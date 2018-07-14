@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../date_util.dart';
+import 'package:birth_x_flutter/utils/date.dart';
 import 'dart:async';
 
 class CountdownTimer extends StatefulWidget {
@@ -47,15 +47,15 @@ class _CountdownTimerState extends State<CountdownTimer> {
 
   void _calculateDate() {
     int year = DateTime.now().year;
-    year = ( DateTime.now().isAfter(DateTime( year, DateTime.JULY , 28, 17, 45))) ? year + 1 : year;
-    DateTime birthDay = DateTime( year, DateTime.JULY , 28, 17, 45);
+    year = ( DateTime.now().isAfter(DateTime( year, DateTime.MARCH , 21, 00, 45))) ? year + 1 : year;
+    DateTime birthDay = DateTime( year, DateTime.MARCH , 21, 00, 45);
     Duration diff = birthDay.difference(DateTime.now());
     setState(() {
       months = getDaysAndMonths(diff.inDays).months;
       days = getDaysAndMonths(diff.inDays).days;
-      hours = diff.inHours - days * 24;
-      minutes = diff.inMinutes - days * 24 * 60 - hours * 60  ;
-      seconds = diff.inSeconds - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60;
+      hours = diff.inHours - diff.inDays * 24;
+      minutes = diff.inMinutes - diff.inHours * 60  ;
+      seconds = diff.inSeconds - diff.inMinutes * 60 ;
     });
   }
 }
@@ -69,7 +69,7 @@ class TimeSlot extends StatelessWidget {
   Widget build(context) {
     return
       new Container(
-          color: Colors.amber,
+          color: Colors.cyanAccent,
           padding: new EdgeInsets.all(5.0),
           margin: new EdgeInsets.only(left: 5.0, right: 5.0),
           child: new Column(
@@ -78,7 +78,7 @@ class TimeSlot extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               new Container(
-                color: Colors.amberAccent,
+                color: Colors.blueAccent,
                 padding: new EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
                 margin: new EdgeInsets.only(bottom: 2.0),
                 child: new Text(this.time.toString(),

@@ -20,9 +20,9 @@ DaysMonths getDaysAndMonths(int days) {
   int thisMonth = DateTime.now().month;
   int monthsPassed = 0;
   while ( daysLeft > DaysInMonth[thisMonth] ) {
-    int days = ( isLeap(DateTime.now().year) && thisMonth == 1 ) ? DaysInMonth[thisMonth] : DaysInMonth[thisMonth] - 1;
-    daysLeft - days;
-    thisMonth = ( thisMonth + 1 > 12 ) ? 0 : thisMonth + 1;
+    int days = ( isLeap(DateTime.now().year) && thisMonth == 1 ) ? DaysInMonth[thisMonth] : DaysInMonth[thisMonth];
+    thisMonth = ( thisMonth + 1 >= 12 ) ? 0 : thisMonth + 1;
+    daysLeft = daysLeft - days;
     monthsPassed++;
   }
   return new DaysMonths(daysLeft, monthsPassed);
