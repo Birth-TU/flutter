@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'widget/countdown_timer.dart';
 import 'package:birth_x_flutter/services/audio.dart';
+import 'package:birth_x_flutter/utils/date.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,6 +26,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+
+  Icon fabIcon = const Icon(Icons.volume_up);
+
+  void _toggleFab() {
+    setState((){
+      if ( !AudioService.isPlaying ) fabIcon = const Icon(Icons.volume_up);
+      else fabIcon = const Icon(Icons.volume_off);
+    });
+  }
   @override
   void initState() {
     super.initState();
@@ -45,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: new Container(
-        color: Colors.cyan,
+        color: Colors.cyan[300],
         child: new Center( child: new Column (
           children: <Widget>[
             new Container(
@@ -53,13 +63,15 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
               child: new Column(
                 children: <Widget>[
                   new Text("How long until \"his birthday\" ?",
+                      textAlign: TextAlign.center,
                       style: new TextStyle(
-                          fontSize: 40.0,
+                          fontSize: 35.0,
                           color: const Color(0xFF000000),
                           fontWeight: FontWeight.w200,
                           fontFamily: "Roboto"
                       )),
                   new Text("He will resolve the promise. Let's not take too long ...",
+                      textAlign: TextAlign.center,
                       style: new TextStyle(
                           fontSize: 20.0,
                           color: const Color(0xFF000000),
@@ -74,14 +86,16 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                 margin: new EdgeInsets.only(top: 5.0),
               child: new Column(
                   children: <Widget>[
-                    new Text("Wish you were healthtieness",
+                    new Text("Wish you were healthiness",
+                        textAlign: TextAlign.center,
                         style: new TextStyle(
                             fontSize: 20.0,
                             color: const Color(0xFF000000),
                             fontWeight: FontWeight.w200,
                             fontFamily: "Roboto"
                         )),
-                    new Text("Counting down from 21 March 2561 BE at 00:45 (GMT +0700)",
+                    new Text("Counting down from 21 March " + getYear().toString() + " BE at 00:45 (GMT +0700)",
+                        textAlign: TextAlign.center,
                         style: new TextStyle(
                             fontSize: 20.0,
                             color: const Color(0xFF000000),
@@ -93,6 +107,14 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
             )
           ],
         ) )
+      ),
+      floatingActionButton:  new FloatingActionButton(
+        backgroundColor: Colors.redAccent,
+          child: fabIcon,
+          onPressed: () {
+            AudioService.toggle();
+            _toggleFab();
+          }
       ),
     );
   }

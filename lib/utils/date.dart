@@ -1,18 +1,23 @@
-var DaysInMonth = [
+const DaysInMonth = [
   31, 29, 31,
   30, 31, 30,
   31, 31, 30,
   31, 30, 31
 ];
 
-bool isLeap(Year) {
-  return (Year % 4 == 0 && Year % 100 != 0) || (Year % 400 == 0);
+bool isLeap(int year) {
+  return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
 
 class DaysMonths {
   int days;
   int months;
   DaysMonths(this.days, this.months);
+}
+
+int getYear() {
+  int year = DateTime.now().year;
+  return ( DateTime.now().isAfter(DateTime( year, DateTime.MARCH , 21, 00, 45))) ? year + 1 : year;
 }
 
 DaysMonths getDaysAndMonths(int days) {
