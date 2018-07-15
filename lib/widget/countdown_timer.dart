@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:birth_x_flutter/utils/date.dart';
+import 'package:birth_tu_flutter/utils/date.dart';
 import 'dart:async';
 
 class CountdownTimer extends StatefulWidget {

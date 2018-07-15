@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'widget/countdown_timer.dart';
-import 'package:birth_x_flutter/services/audio.dart';
-import 'package:birth_x_flutter/utils/date.dart';
+import 'package:birth_tu_flutter/services/audio.dart';
+import 'package:birth_tu_flutter/utils/date.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Birth-X',
+      title: 'Birth-TU',
       theme: new ThemeData(
         primarySwatch: Colors.cyan,
       ),
